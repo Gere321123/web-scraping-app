@@ -8,8 +8,11 @@ app = Flask(__name__)
 def get_data():
     url = 'https://moj.ddor.rs/kupi-online/base/putno-osiguranje'
     response = requests.get(url)
+    print(response.content)
+    print("Hello")
 
     if response.status_code == 200:
+
         soup = BeautifulSoup(response.content, 'html.parser')
         data = []
         for item in soup.find_all('div', class_='dates-info ng-tns-c180-1'):
