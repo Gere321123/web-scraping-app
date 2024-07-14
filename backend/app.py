@@ -1,27 +1,35 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 from flask_cors import CORS
-import requests
-from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 app = Flask(__name__)
-CORS(app) 
+CORS(app)
 
 @app.route('/api')
 def get_data():
-    url = 'https://moj.ddor.rs/kupi-online/base/putno-osiguranje'
-    response = requests.get(url)
 
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.content, 'html.parser')
+    service = Service(executable_path="chromedriver.exe")
+    driver = webdriver.Chrome(service=service)
+
+    try:
+        url = 'https://moj.ddor.rs/kupi-online/base/putno-osiguranje'
+        driver.get(url)
+        # Adatok gyűjtése Selenium segítségével
         data = []
-        for item in soup.find_all('div', class_='col info-div'):
-            title = item.find('h5').text
-            price = item.find('span', class_='price').text
-            data.append({'title': title, 'price': price})
+        elements = driver.find_element(By.CLASS_NAME, 'header-title')
+       
+        print(elements)
+           
         return jsonify(data)
-    else:
-        return jsonify({'error': 'Failed to retrieve the page'}), response.status_code
 
+    finally:
+        # Ne felejtsd el lezárni a drivert, amikor végeztél vele
+        driver.quit()
 
 if __name__ == '__main__':
     app.run(debug=True)
