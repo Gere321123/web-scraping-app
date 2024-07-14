@@ -1,11 +1,12 @@
+// vue.config.js
 module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:5000', // vagy 'http://localhost:5000'
+        target: 'http://localhost:5000', // vagy a Flask szerverd címe és portja
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '', // Így töröld le az '/api' prefixet, ha a Flask szerver nem várja el
+          '^/api': '', // Lehet, hogy nem kell a pathRewrite, ha nincs prefix
         },
       },
     },

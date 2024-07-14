@@ -21,13 +21,24 @@
       };
     },
     async created() {
-      try {
-        const response = await fetch('/api/data');
-        this.data = await response.json();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
+  try {
+    const response = await fetch('http://localhost:5000/api');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      this.data = await response.json();
+    } else {
+      throw new TypeError('Expected JSON response from server');
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
+
+
   };
   </script>
   
