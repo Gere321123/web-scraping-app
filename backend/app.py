@@ -146,7 +146,6 @@ def get_data():
                 
                 sport_div = wait.until(EC.element_to_be_clickable((By.XPATH, f"//li[contains(text(), '{sport.strip()}')]")))
                 sport_div.click()
-                print("Ide Mar nem")
         except Exception as e:
             response_data = {'error': f'Error occurred: {str(e)}'}
             
