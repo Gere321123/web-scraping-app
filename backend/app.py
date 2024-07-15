@@ -15,6 +15,51 @@ from selenium.common.exceptions import NoSuchElementException
 app = Flask(__name__)
 CORS(app)
 
+month_translation = {
+    'January': 'Januar',
+    'February': 'Februar',
+    'March': 'Mart',
+    'April': 'April',
+    'May': 'Maj',
+    'June': 'Jun',
+    'July': 'Jul',
+    'August': 'Avgust',
+    'September': 'Septembar',
+    'October': 'Oktobar',
+    'November': 'Novembar',
+    'December': 'Decembar'
+}
+
+def select_date(driver, date_picker_id, formatted_date):
+    wait = WebDriverWait(driver, 10)
+    
+    date_picker = wait.until(EC.element_to_be_clickable((By.ID, date_picker_id)))
+    date_picker.click()
+
+    # Válasszuk ki az évet
+    year_select = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'picker__select--year')))
+    year_options = year_select.find_elements(By.TAG_NAME, 'option')
+    for option in year_options:
+        if option.get_attribute('value') == formatted_date['year']:
+            option.click()
+            break
+
+    # Válasszuk ki a hónapot
+    month_select = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'picker__select--month')))
+    month_options = month_select.find_elements(By.TAG_NAME, 'option')
+    for option in month_options:
+        if option.text == formatted_date['month_name']:
+            option.click()
+            break
+
+    # Válasszuk ki a napot
+    wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'picker__day')))
+    days = driver.find_elements(By.CLASS_NAME, 'picker__day--infocus')
+    for day in days:
+        if day.text == formatted_date['day']:
+            day.click()
+            break
+
 @app.route('/api', methods=['POST'])
 def get_data():
     
@@ -24,21 +69,24 @@ def get_data():
     departure_date = data.get('departureDate')
     age = data.get('age')
 
+
     # Érkezés dátum feldolgozása
     arrival_datetime = datetime.strptime(arrival_date, '%Y-%m-%d')
+    arrival_month_name = arrival_datetime.strftime('%B')
     formatted_arrival_date = {
         'year': arrival_datetime.strftime('%Y'),
         'month': arrival_datetime.strftime('%m'),
-        'month_name': arrival_datetime.strftime('%B'),
+        'month_name': month_translation[arrival_month_name],
         'day': arrival_datetime.strftime('%d')
     }
 
     # Távozás dátum feldolgozása
     departure_datetime = datetime.strptime(departure_date, '%Y-%m-%d')
+    departure_month_name = departure_datetime.strftime('%B')
     formatted_departure_date = {
         'year': departure_datetime.strftime('%Y'),
         'month': departure_datetime.strftime('%m'),
-        'month_name': departure_datetime.strftime('%B'),
+        'month_name': month_translation[departure_month_name],
         'day': departure_datetime.strftime('%d')
     }
     print(formatted_departure_date['month_name'])
@@ -51,32 +99,8 @@ def get_data():
         url = 'https://moj.ddor.rs/kupi-online/base/putno-osiguranje'
         driver.get(url)
 
-        wait = WebDriverWait(driver, 10)
-        date_picker = wait.until(EC.element_to_be_clickable((By.ID, 'mdb-datepicker-0')))
-        date_picker.click()
-
-        # Wait for the date picker to become visible
-        wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'picker__day')))
-
-        # Find the correct td element containing the div with text '20'
-        days = driver.find_elements(By.CLASS_NAME, 'picker__day--infocus')
-        for day in days:
-            if '20' in day.text:
-                day.click()
-                break
-            
-        date_picker = wait.until(EC.element_to_be_clickable((By.ID, 'mdb-datepicker-1')))
-        date_picker.click()
-
-        # Wait for the date picker to become visible
-        wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'picker__day')))
-
-        # Find the correct td element containing the div with text '20'
-        days = driver.find_elements(By.CLASS_NAME, 'picker__day--infocus')
-        for day in days:
-            if '25' in day.text:
-                day.click()
-                break
+        select_date(driver, 'mdb-datepicker-0', formatted_arrival_date)
+        select_date(driver, 'mdb-datepicker-1', formatted_departure_date)
 
 
         wait = WebDriverWait(driver, 10)
