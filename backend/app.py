@@ -18,12 +18,31 @@ CORS(app)
 @app.route('/api', methods=['POST'])
 def get_data():
     
-    # data = request.json
-    # arrival_date = data.get('arrivalDate')
-    # departure_date = data.get('departureDate')
-    # age = data.get('age')
-    # formatted_arrival_date = datetime.strptime(arrival_date, '%Y-%m-%d').strftime('%d.%m.%Y')
-    # formatted_departure_date = datetime.strptime(departure_date, '%Y-%m-%d').strftime('%d.%m.%Y')
+    
+    data = request.json
+    arrival_date = data.get('arrivalDate')
+    departure_date = data.get('departureDate')
+    age = data.get('age')
+
+    # Érkezés dátum feldolgozása
+    arrival_datetime = datetime.strptime(arrival_date, '%Y-%m-%d')
+    formatted_arrival_date = {
+        'year': arrival_datetime.strftime('%Y'),
+        'month': arrival_datetime.strftime('%m'),
+        'month_name': arrival_datetime.strftime('%B'),
+        'day': arrival_datetime.strftime('%d')
+    }
+
+    # Távozás dátum feldolgozása
+    departure_datetime = datetime.strptime(departure_date, '%Y-%m-%d')
+    formatted_departure_date = {
+        'year': departure_datetime.strftime('%Y'),
+        'month': departure_datetime.strftime('%m'),
+        'month_name': departure_datetime.strftime('%B'),
+        'day': departure_datetime.strftime('%d')
+    }
+    print(formatted_departure_date['month_name'])
+
 
     service = Service(executable_path="chromedriver.exe")
     driver = webdriver.Chrome(service=service)
@@ -68,7 +87,6 @@ def get_data():
             try:
                 age_div = div.find_element(By.XPATH, ".//div[text()='18-70 godina']")
                 filtered_divs.append(div)
-                print(div)
             except NoSuchElementException:
                 continue
     
@@ -90,6 +108,7 @@ def get_data():
                 price_div = price_divs[0]
 
             price_value = price_div.text.strip()  
+            # print(price_value)
 
             response_data = {'price': price_value}
 
@@ -97,7 +116,6 @@ def get_data():
             print("Price div 'pack-text price-div' not found.")
 
     finally:
-        # Ne felejtsd el lezárni a drivert, amikor végeztél vele
         driver.quit()
     return jsonify(response_data)
 
