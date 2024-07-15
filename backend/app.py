@@ -80,6 +80,8 @@ def get_data():
     arrival_date = data.get('arrivalDate')
     departure_date = data.get('departureDate')
     ages = data.get('ages')
+    sport = data.get('sport')
+
 
 
     # Érkezés dátum feldolgozása
@@ -136,8 +138,19 @@ def get_data():
                         print("Sibling div 'travel-cnt-div' not found.")
             else:
                 print(f"No traveler divs found containing '{age_group}'.")
+        try:
+            if sport:
+                wait = WebDriverWait(driver, 10)
+                sport_select = wait.until(EC.element_to_be_clickable((By.ID, 'filter')))
+                sport_select.click()
                 
+                sport_div = wait.until(EC.element_to_be_clickable((By.XPATH, f"//li[contains(text(), '{sport.strip()}')]")))
+                sport_div.click()
+                print("Ide Mar nem")
+        except Exception as e:
+            response_data = {'error': f'Error occurred: {str(e)}'}
             
+                
         wait = WebDriverWait(driver, 10)    
         try:
             price_divs = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.pack-text.price-div')))
@@ -152,6 +165,9 @@ def get_data():
 
         except NoSuchElementException:
             print("Price div 'pack-text price-div' not found.")
+       
+            
+            
 
     finally:
         driver.quit()
