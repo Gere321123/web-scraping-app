@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Adatok</h1>
+    <h1>Utazás biztositás kereső</h1>
     <form @submit.prevent="fetchData">
       <div class="form-group">
         <label for="arrival">Érkezés dátuma:</label>
@@ -22,12 +22,17 @@
         <input type="number" :id="'age' + index" v-model.number="ages[index]" min="0" required />
       </div>
 
+      <DDOR_Travel_Type 
+      :selectedSport="selectedSport" 
+      @update:selectedSport="updateSelectedSport"
+    />
+
       <button type="submit">Keresés</button>
     </form>
 
     <div v-if="data" class="data-display">
       <div>
-        <h2>{{ data.title }}</h2>
+        <h2>DDOR{{ data.title }}</h2>
         <p>Ár: {{ data.price }}</p>
       </div>
     </div>
@@ -38,7 +43,11 @@
 </template>
 
 <script>
+import DDOR_Travel_Type from './DDOR_Travel_Type.vue';
 export default {
+  components: {
+    DDOR_Travel_Type
+  },
   data() {
     return {
       data: null,
@@ -46,10 +55,14 @@ export default {
       departureDate: '',
       numberOfPeople: 1,
       ages: [0],
-      today: new Date().toISOString().split('T')[0]
+      today: new Date().toISOString().split('T')[0],
+      selectedSport: '',
     };
   },
   methods: {
+    updateSelectedSport(sport) {
+      this.selectedSport = sport;
+    },
     updateAgesArray() {
       const newAgesArray = [];
       for (let i = 0; i < this.numberOfPeople; i++) {
@@ -67,7 +80,8 @@ export default {
           body: JSON.stringify({
             arrivalDate: this.arrivalDate,
             departureDate: this.departureDate,
-            ages: this.ages
+            ages: this.ages,
+            sport: this.selectedSport,
           })
         });
         if (!response.ok) {

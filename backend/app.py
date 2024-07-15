@@ -15,6 +15,18 @@ from selenium.common.exceptions import NoSuchElementException
 app = Flask(__name__)
 CORS(app)
 
+def determine_age_group(age):
+    if age < 18:
+        return "do 18 godina"
+    elif 18 <= age <= 69:
+        return "18-70 godina"
+    elif 70 <= age <= 79:
+        return "70-80 godina"
+    elif 80 <= age <= 84:
+        return "80-85 godina"
+    else:
+        return "85+ godina"
+
 month_translation = {
     'January': 'Januar',
     'February': 'Februar',
@@ -67,7 +79,7 @@ def get_data():
     data = request.json
     arrival_date = data.get('arrivalDate')
     departure_date = data.get('departureDate')
-    age = data.get('age')
+    ages = data.get('ages')
 
 
     # Érkezés dátum feldolgozása
@@ -89,7 +101,6 @@ def get_data():
         'month_name': month_translation[departure_month_name],
         'day': departure_datetime.strftime('%d')
     }
-    print(formatted_departure_date['month_name'])
 
 
     service = Service(executable_path="chromedriver.exe")
@@ -106,23 +117,26 @@ def get_data():
         wait = WebDriverWait(driver, 10)
         traveler_divs = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'traveler-cnt-row')))
 
-        filtered_divs = []
-        for div in traveler_divs:
-            try:
-                age_div = div.find_element(By.XPATH, ".//div[text()='18-70 godina']")
-                filtered_divs.append(div)
-            except NoSuchElementException:
-                continue
-    
-        if filtered_divs:
-            for div in filtered_divs:
+        for age in ages:
+            age_group = determine_age_group(age)
+            filtered_divs = []
+            for div in traveler_divs:
                 try:
-                    label = div.find_element(By.CLASS_NAME, "fas.fa-plus")
-                    label.click()
+                    age_div = div.find_element(By.XPATH, f".//div[text()='{age_group}']")
+                    filtered_divs.append(div)
                 except NoSuchElementException:
-                    print("Sibling div 'travel-cnt-div' not found.")
-        else:
-            print("No traveler divs found containing '18-70 godina'.")
+                    continue
+            
+            if filtered_divs:
+                for div in filtered_divs:
+                    try:
+                        label = div.find_element(By.CLASS_NAME, "fas.fa-plus")
+                        label.click()
+                    except NoSuchElementException:
+                        print("Sibling div 'travel-cnt-div' not found.")
+            else:
+                print(f"No traveler divs found containing '{age_group}'.")
+                
             
         wait = WebDriverWait(driver, 10)    
         try:
