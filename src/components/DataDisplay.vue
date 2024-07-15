@@ -1,23 +1,34 @@
 <template>
-  <div>
+  <div class="container">
     <h1>Adatok</h1>
     <form @submit.prevent="fetchData">
-      <label for="arrival">Érkezés dátuma:</label>
-      <input type="date" id="arrival" v-model="arrivalDate" required />
-      
-      <label for="departure">Távozás dátuma:</label>
-      <input type="date" id="departure" v-model="departureDate" required />
-      
-      <label for="age">Életkor:</label>
-      <input type="number" id="age" v-model="age" required />
+      <div class="form-group">
+        <label for="arrival">Érkezés dátuma:</label>
+        <input type="date" id="arrival" v-model="arrivalDate" :min="today" required />
+      </div>
+
+      <div class="form-group">
+        <label for="departure">Távozás dátuma:</label>
+        <input type="date" id="departure" v-model="departureDate" :min="today" required />
+      </div>
+
+      <div class="form-group">
+        <label for="numberOfPeople">Foglalók száma:</label>
+        <input type="number" id="numberOfPeople" v-model.number="numberOfPeople" min="1" @change="updateAgesArray" required />
+      </div>
+
+      <div class="form-group" v-for="(age, index) in ages" :key="index">
+        <label :for="'age' + index">Életkor {{ index + 1 }}:</label>
+        <input type="number" :id="'age' + index" v-model.number="ages[index]" min="0" required />
+      </div>
 
       <button type="submit">Keresés</button>
     </form>
 
-    <div v-if="data">
+    <div v-if="data" class="data-display">
       <div>
         <h2>{{ data.title }}</h2>
-        <p>Ár: {{ data.price }}</p> <!-- Ár megjelenítése -->
+        <p>Ár: {{ data.price }}</p>
       </div>
     </div>
     <div v-else>
@@ -33,10 +44,19 @@ export default {
       data: null,
       arrivalDate: '',
       departureDate: '',
-      age: ''
+      numberOfPeople: 1,
+      ages: [0],
+      today: new Date().toISOString().split('T')[0]
     };
   },
   methods: {
+    updateAgesArray() {
+      const newAgesArray = [];
+      for (let i = 0; i < this.numberOfPeople; i++) {
+        newAgesArray.push(this.ages[i] !== undefined ? this.ages[i] : 0);
+      }
+      this.ages = newAgesArray;
+    },
     async fetchData() {
       try {
         const response = await fetch('http://localhost:5000/api', {
@@ -47,7 +67,7 @@ export default {
           body: JSON.stringify({
             arrivalDate: this.arrivalDate,
             departureDate: this.departureDate,
-            age: this.age
+            ages: this.ages
           })
         });
         if (!response.ok) {
@@ -68,19 +88,37 @@ export default {
 </script>
 
 <style>
-/* Tetszés szerinti stílusok */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
 form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 20px;
 }
-label {
-  display: block;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 10px;
+}
+label {
+  margin-bottom: 5px;
 }
 input {
-  display: block;
   margin-top: 5px;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
 }
 button {
-  margin-top: 10px;
+  margin-top: 20px;
+  padding: 10px 20px;
+}
+.data-display {
+  margin-top: 20px;
 }
 </style>

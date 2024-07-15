@@ -1,0 +1,83 @@
+<ul _ngcontent-npl-c179="" class="border ng-star-inserted">
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Aerobik </li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Aeroklubovi     </li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Aikido       </li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Atletika - laka</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Atletika - teška, izuzev rvanja i boksa</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Badminton    </li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Biciklizam - planinski biciklizam (mountain bike)   </li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Biciklizam - sa trkama svih vrsta i treninzima za njih</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Bilijar</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Bodibilding</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Boks i kik-boks       </li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Dizanje tegova</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Džet ski</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Džez balet</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Džijudžica, džudo i sambo</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Fudbal</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Gimnastika - proste vežbe</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Gimnastika - vežbe na spravama</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Go Kart</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Golf</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Hokej - na ledu</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Hokej - na rolšuama</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Hokej - na travi</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Jahanje - galopske i kasačke trke</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Jahanje - sportsko jahanje</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Jahanje - trke preko prepona</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Jedrenje, veslanje i skijanje na vodi - na moru</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Jedrenje, veslanje i skijanje na vodi - na unutrašnjim vodama</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Joga</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Kajak - vožnja</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Kapuera</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Karate</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Kendo  </li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Kjokošin kai karate</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Klizanje na ledu</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Košarka, basket</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Kuglanje</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Logorovanje sa upražnjavanjem raznih sportskih disciplina</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Lovački sport</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Mačevanje</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Motociklizam, automobilizam i mopedizam - kontrolori i pratioci u automobilu ili na motociklu i automoto trkama</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Motociklizam, automobilizam i mopedizam - mopedizam - takmičenje i treninzi</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Odbojka</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Organizatori sportskih takmičenja - za auto-moto sport (starteri, merači vremena, kontrolori staze, zapisničari i redari) </li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Organizatori sportskih takmičenja - za ostale sportove</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Planinarenje - hodanje planinskim putevima do 3 000 metara nadmorske visine, isključujući penjanje po vrletima i penjanje na glečere bez obzira na visinu</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Ples - akrobatski</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Ples - klasični</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Plivanje</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Plivanje - maratonsko plivanje</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Plivanje - na bazenima     </li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Plivanje - na moru</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Plivanje - na unutrašnjim vodama</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Ragbi</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Ribarenje - na otvorenom moru</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Ribarenje - podvodni ribolov</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Ribarenje - priobalna, jezerska i na rekama</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Rolanje - rolerima, rolšuama</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Rukomet</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Rvanje - grčko-rimski stil</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Rvanje - slobodni stil</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Sankanje - na bobu</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Sankanje - na običnim sankama</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Sankanje - na sportskim sankama za takmičenje</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Skijanje - rekreativno</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Skijanje - trening i učešće osiguranika u takmičenjima profesionalnih ili amaterskih sportista registrovanog člana sportske organizacije</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Skokovi u vodu</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Speleolozi</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Sportske sudije</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Stoni tenis</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Streljački sport</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Tekvondo</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Tenis</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Tociljanje</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Treneri - ostali aktivni sportski radnici (vođa puta, fizioterapeut, lekar i druga lica)</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Treneri - za sportove od 1 do 4 razreda opasnosti</li><li _ngcontent-npl-c179="" class="text ng-star-inserted">Treneri - za sportove od 5 do 7 razreda opasnosti</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Treneri - za sportove od 8 do 9 razreda opasnosti</li><li _ngcontent-npl-c179="" class="text ng-star-inserted">Triatlon</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Trke motornih sportskih čamaca</li><li _ngcontent-npl-c179="" class="text ng-star-inserted">Učenici auto-škola</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Učenici fiskulture</li><li _ngcontent-npl-c179="" class="text ng-star-inserted">Vaterpolo</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Vazduhoplovno modelarstvo - bez rizika letenja</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Vežbe - fitness</li><li _ngcontent-npl-c179="" class="text ng-star-inserted">Vežbe - gimnastika na spravama</li>
+<li _ngcontent-npl-c179="" class="text ng-star-inserted">Vežbe - sletovi</li><li _ngcontent-npl-c179="" class="text ng-star-inserted">Šah</li><!----></ul>
