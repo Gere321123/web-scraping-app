@@ -14,15 +14,19 @@
 
       <div class="form-group">
         <label for="numberOfPeople">Foglalók száma:</label>
-        <input type="number" id="numberOfPeople" v-model.number="numberOfPeople" min="1" @change="updateAgesArray" required />
+        <input type="number" id="numberOfPeople" v-model.number="numberOfPeople" min="1" @change="updateAgesArray" />
       </div>
 
       <div class="form-group" v-for="(age, index) in ages" :key="index">
         <label :for="'age' + index">Életkor {{ index + 1 }}:</label>
-        <input type="number" :id="'age' + index" v-model.number="ages[index]" min="0" required />
+        <input type="number" :id="'age' + index" v-model.number="ages[index]" min="0" />
       </div>
-
-      <DDOR_Travel_Type 
+      <div class="form-group">
+      <label>Sportok:</label>
+      <input type="checkbox" v-model="sportVisible" >
+      </div>
+      
+      <DDOR_Travel_Type v-if="sportVisible"
       :selectedSport="selectedSport" 
       @update:selectedSport="updateSelectedSport"
     />
@@ -57,6 +61,7 @@ export default {
       ages: [0],
       today: new Date().toISOString().split('T')[0],
       selectedSport: '',
+      sportVisible: false,
     };
   },
   methods: {

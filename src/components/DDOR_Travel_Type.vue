@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h2>Sportok:</h2>
+        
       <input type="text" v-model="searchQuery" placeholder="Keresés..." class="search-bar" />
       <ul class="border">
         <li 
