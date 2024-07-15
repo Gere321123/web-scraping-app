@@ -18,13 +18,12 @@ CORS(app)
 @app.route('/api', methods=['POST'])
 def get_data():
     
-    data = request.json
-    arrival_date = data.get('arrivalDate')
-    departure_date = data.get('departureDate')
-    age = data.get('age')
-    formatted_arrival_date = datetime.strptime(arrival_date, '%Y-%m-%d').strftime('%d.%m.%Y')
-    formatted_departure_date = datetime.strptime(departure_date, '%Y-%m-%d').strftime('%d.%m.%Y')
-    print(formatted_arrival_date)
+    # data = request.json
+    # arrival_date = data.get('arrivalDate')
+    # departure_date = data.get('departureDate')
+    # age = data.get('age')
+    # formatted_arrival_date = datetime.strptime(arrival_date, '%Y-%m-%d').strftime('%d.%m.%Y')
+    # formatted_departure_date = datetime.strptime(departure_date, '%Y-%m-%d').strftime('%d.%m.%Y')
 
     service = Service(executable_path="chromedriver.exe")
     driver = webdriver.Chrome(service=service)
@@ -32,12 +31,7 @@ def get_data():
     try:
         url = 'https://moj.ddor.rs/kupi-online/base/putno-osiguranje'
         driver.get(url)
-        # Adatok gyűjtése Selenium segítségével
-        data = []
-        # input = driver.find_element(By.CLASS_NAME, 'traveler-cnt-input ng-tns-c180-1 ng-pristine ng-valid ng-touched')
-        # input.send_keys(1)
-        # time.sleep(3)
-        
+
         wait = WebDriverWait(driver, 10)
         date_picker = wait.until(EC.element_to_be_clickable((By.ID, 'mdb-datepicker-0')))
         date_picker.click()
@@ -88,14 +82,24 @@ def get_data():
         else:
             print("No traveler divs found containing '18-70 godina'.")
             
+        wait = WebDriverWait(driver, 10)    
+        try:
+            price_divs = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.pack-text.price-div')))
             
-        time.sleep(10)
-           
-        return jsonify(data)
+            if price_divs:
+                price_div = price_divs[0]
+
+            price_value = price_div.text.strip()  
+
+            response_data = {'price': price_value}
+
+        except NoSuchElementException:
+            print("Price div 'pack-text price-div' not found.")
 
     finally:
         # Ne felejtsd el lezárni a drivert, amikor végeztél vele
         driver.quit()
+    return jsonify(response_data)
 
 if __name__ == '__main__':
     app.run(debug=True)

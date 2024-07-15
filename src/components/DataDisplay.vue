@@ -14,10 +14,10 @@
       <button type="submit">Keresés</button>
     </form>
 
-    <div v-if="data.length">
-      <div v-for="item in data" :key="item.title">
-        <h2>{{ item.title }}</h2>
-        <p>{{ item.price }}</p>
+    <div v-if="data">
+      <div>
+        <h2>{{ data.title }}</h2>
+        <p>Ár: {{ data.price }}</p> <!-- Ár megjelenítése -->
       </div>
     </div>
     <div v-else>
@@ -30,7 +30,7 @@
 export default {
   data() {
     return {
-      data: [],
+      data: null,
       arrivalDate: '',
       departureDate: '',
       age: ''
