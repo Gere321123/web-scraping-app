@@ -7,13 +7,6 @@ from sava_travel import get_travel_price_sava
 app = Flask(__name__)
 CORS(app)
 
-async def fetch_travel_prices(params):
-    arrival_date, departure_date, ages, sport = params
-    sava_price = await get_travel_price_sava(arrival_date, departure_date, ages)
-    # ddor_price = await get_travel_price_ddor(arrival_date, departure_date, ages, sport)
-    print(sava_price)
-    
-    return ddor_price, sava_price
 
 
 
@@ -26,13 +19,16 @@ def get_data():
     sport = data.get('sport')
 
     try:
-        results = asyncio.run(fetch_travel_prices((arrival_date, departure_date, ages, sport)))
-        ddor_price, sava_price = results
-
+        sava_price =  get_travel_price_sava(arrival_date, departure_date, ages)
+        print(sava_price)
+        ddor_price =  get_travel_price_ddor(arrival_date, departure_date, ages, sport)
+        print(ddor_price)
         response_data = {
             'ddor_price': ddor_price,
             'sava_price': sava_price
         }
+        print(response_data)
+        
     except Exception as e:
         response_data = {'error': str(e)}
 

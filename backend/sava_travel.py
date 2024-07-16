@@ -15,7 +15,7 @@ def format_date(date_str):
     formatted_date = f"{date_time.strftime('%d')}.{date_time.strftime('%m')}.{date_time.strftime('%Y')}"
     return formatted_date
 
-async def select_date(driver, date_picker_id, formatted_date):
+def select_date(driver, date_picker_id, formatted_date):
     wait = WebDriverWait(driver, 10)
     
     date_picker = wait.until(EC.element_to_be_clickable((By.ID, date_picker_id)))
@@ -23,7 +23,7 @@ async def select_date(driver, date_picker_id, formatted_date):
     date_picker.send_keys(formatted_date)
     date_picker.send_keys("\n")  # Sometimes a newline character is needed to confirm the input
 
-async def get_travel_price_sava(arrival_date, departure_date, ages):
+def get_travel_price_sava(arrival_date, departure_date, ages):
     formatted_arrival_date = format_date(arrival_date)
     formatted_departure_date = format_date(departure_date)
 
@@ -36,8 +36,8 @@ async def get_travel_price_sava(arrival_date, departure_date, ages):
         url = 'https://webshop.sava-osiguranje.rs/putno-osiguranje/?gad_source=1'
         driver.get(url)
 
-        await select_date(driver, 'startDate', formatted_arrival_date)
-        await select_date(driver, 'endDate', formatted_departure_date)
+        select_date(driver, 'startDate', formatted_arrival_date)
+        select_date(driver, 'endDate', formatted_departure_date)
         
         wait = WebDriverWait(driver, 10)
         element = wait.until(EC.presence_of_element_located((By.ID, 'basicPrice')))
