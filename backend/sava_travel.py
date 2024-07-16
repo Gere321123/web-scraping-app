@@ -29,6 +29,7 @@ def get_travel_price_sava(arrival_date, departure_date, ages):
 
     options = Options()
     options.headless = True
+    options.add_argument('--start-maximized')
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
 

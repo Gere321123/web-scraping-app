@@ -23,8 +23,9 @@ def get_data():
     
     try:
         with concurrent.futures.ThreadPoolExecutor() as executor:
-            future_sava = executor.submit(get_travel_price_sava, arrival_date, departure_date, ages)
             future_ddor = executor.submit(get_travel_price_ddor, arrival_date, departure_date, ages, sport)
+            future_sava = executor.submit(get_travel_price_sava, arrival_date, departure_date, ages)
+            
 
         sava_price = future_sava.result()
         ddor_price = future_ddor.result()

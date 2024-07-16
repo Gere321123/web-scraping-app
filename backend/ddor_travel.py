@@ -70,8 +70,11 @@ def get_travel_price_ddor(arrival_date, departure_date, ages, sport=None):
     formatted_arrival_date = format_date(arrival_date)
     formatted_departure_date = format_date(departure_date)
 
-    service = Service(executable_path="chromedriver.exe")
-    driver = webdriver.Chrome(service=service)
+    service = Service(ChromeDriverManager().install())
+    options = Options()
+    options.headless = True
+    options.add_argument('--start-maximized')
+    driver = webdriver.Chrome(service=service, options=options)
 
     try:
         url = 'https://moj.ddor.rs/kupi-online/base/putno-osiguranje'
