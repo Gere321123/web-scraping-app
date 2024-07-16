@@ -38,10 +38,12 @@ async def get_travel_price_sava(arrival_date, departure_date, ages):
 
         await select_date(driver, 'startDate', formatted_arrival_date)
         await select_date(driver, 'endDate', formatted_departure_date)
-        print ("Hurra")
         
-        time.sleep(10)
-        return "155 din"
+        wait = WebDriverWait(driver, 10)
+        element = wait.until(EC.presence_of_element_located((By.ID, 'basicPrice')))
+        basic_price = element.text.strip()  # Strip to remove any surrounding whitespace
+
+        return basic_price
 
     finally:
         driver.quit()

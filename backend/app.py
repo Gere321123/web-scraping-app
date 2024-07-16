@@ -11,6 +11,7 @@ async def fetch_travel_prices(params):
     arrival_date, departure_date, ages, sport = params
     sava_price = await get_travel_price_sava(arrival_date, departure_date, ages)
     # ddor_price = await get_travel_price_ddor(arrival_date, departure_date, ages, sport)
+    print(sava_price)
     
     return ddor_price, sava_price
 
