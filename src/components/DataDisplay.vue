@@ -78,32 +78,39 @@ export default {
       this.ages = newAgesArray;
     },
     async fetchData() {
-      try {
-        const response = await fetch('http://localhost:5000/api', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            arrivalDate: this.arrivalDate,
-            departureDate: this.departureDate,
-            ages: this.ages,
-            sport: this.selectedSport,
-          })
-        });
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const contentType = response.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          this.data = await response.json();
-        } else {
-          throw new TypeError('Expected JSON response from server');
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
+  try {
+    // Check if arrival date is later than departure date
+    if (new Date(this.arrivalDate) > new Date(this.departureDate)) {
+      alert('Érkezés dátuma nem lehet később mint a távozás dátuma!');
+      return; // Exit early if validation fails
     }
+
+    const response = await fetch('http://localhost:5000/api', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        arrivalDate: this.arrivalDate,
+        departureDate: this.departureDate,
+        ages: this.ages,
+        sport: this.selectedSport,
+      })
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      this.data = await response.json();
+    } else {
+      throw new TypeError('Expected JSON response from server');
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
   }
 };
 </script>
