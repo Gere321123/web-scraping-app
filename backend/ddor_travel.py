@@ -66,7 +66,7 @@ def select_date(driver, date_picker_id, formatted_date):
             day.click()
             break
 
-def get_travel_price(arrival_date, departure_date, ages, sport=None):
+def get_travel_price_ddor(arrival_date, departure_date, ages, sport=None):
     formatted_arrival_date = format_date(arrival_date)
     formatted_departure_date = format_date(departure_date)
 

@@ -21,7 +21,9 @@
         <label :for="'age' + index">Életkor {{ index + 1 }}:</label>
         <input type="number" :id="'age' + index" v-model.number="ages[index]" min="0" />
       </div>
-      <div class="form-group">
+
+
+      <!-- <div class="form-group">
       <label>Sportok:</label>
       <input type="checkbox" v-model="sportVisible" >
       </div>
@@ -29,7 +31,7 @@
       <DDOR_Travel_Type v-if="sportVisible"
       :selectedSport="selectedSport" 
       @update:selectedSport="updateSelectedSport"
-    />
+    /> -->
 
       <button type="submit">Keresés</button>
     </form>
@@ -47,10 +49,10 @@
 </template>
 
 <script>
-import DDOR_Travel_Type from './DDOR_Travel_Type.vue';
+// import DDOR_Travel_Type from './DDOR_Travel_Type.vue';
 export default {
   components: {
-    DDOR_Travel_Type
+    
   },
   data() {
     return {
