@@ -4,6 +4,7 @@ import concurrent.futures
 import logging
 from ddor_travel import get_travel_price_ddor
 from sava_travel import get_travel_price_sava
+from e_tigrav_travel import get_travel_price_etigrav
 
 app = Flask(__name__)
 CORS(app)
@@ -23,8 +24,9 @@ def get_data():
     
     try:
         with concurrent.futures.ThreadPoolExecutor() as executor:
-            future_ddor = executor.submit(get_travel_price_ddor, arrival_date, departure_date, ages, sport)
-            future_sava = executor.submit(get_travel_price_sava, arrival_date, departure_date, ages)
+            # future_ddor = executor.submit(get_travel_price_ddor, arrival_date, departure_date, ages, sport)
+            # future_sava = executor.submit(get_travel_price_sava, arrival_date, departure_date, ages)
+            future_etigrav = executor.submit(get_travel_price_etigrav, arrival_date, departure_date, ages)
             
 
         sava_price = future_sava.result()
